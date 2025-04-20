@@ -1,56 +1,69 @@
 import { Component, Input, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
-// Component
+
 @Component({
   selector: 'app-counter',
   standalone: true,
-  imports: [CommonModule,
-  ],
+  imports: [CommonModule],
   templateUrl: './counter.component.html',
   styleUrl: './counter.component.css'
 })
 export class CounterComponent {
- @Input() duration: number = 0;
- @Input() message: string = '';
+  @Input() duration: number = 0; // Tiempo que se mostrará el mensaje (en segundos o milisegundos, según el uso)
+  @Input() message: string = ''; // Mensaje a mostrar en pantalla
 
- constructor(){
-    // Before render
-  console.log('-'.repeat(10))
-  console.log('constructor');
+  // Lista de eventos de ciclo de vida que se pueden renderizar en la plantilla
+  lifecycleLog: string[] = [];
 
- }
-
- ngOnChanges(changes: SimpleChanges){
-  // Before and during render
-  console.log('-'.repeat(10));
-  console.log('ngOnChange');
-  console.log(changes);
-  const duration = changes["duration"];
-  console.log(duration && duration.currentValue !== duration.previousValue); // esta linea compara si el valor anterior es diferente al alvalo anterios
-  if (duration){
-    this.doSomethisg();
-  }
- }
-
- ngOnInit(){
-    // Before and during render
+  constructor() {
+    const msg = 'constructor: antes de que se renderice el componente';
     console.log('-'.repeat(10));
-    console.log('ngOnInit');
-    console.log('Duration =>', this.duration)
-    console.log('Message =>', this.message)
- }
- ngAfterViewInit(){
-  console.log('-'.repeat(10));
-  console.log('ngAfterViewInit');
- }
+    console.log(msg);
+    this.lifecycleLog.push(msg);
+  }
 
- ngOnDestroy(){
-  console.log('-'.repeat(10));
-  console.log('ngOnDestroy');
- }
+  ngOnChanges(changes: SimpleChanges) {
+    const msg = 'ngOnChanges: se ejecuta cuando cambia un @Input antes del render';
+    console.log('-'.repeat(10));
+    console.log(msg);
+    console.log(changes);
+    this.lifecycleLog.push(msg);
 
+    const duration = changes['duration'];
+    if (duration) {
+      const changed = duration.currentValue !== duration.previousValue;
+      console.log('¿Cambió duration?', changed);
+      this.lifecycleLog.push(`Cambio en duration: de ${duration.previousValue} a ${duration.currentValue}`);
+      this.doSomethisg();
+    }
+  }
 
- doSomethisg(){
-  console.log('Testo de que si me la se hijos de su pinfloit')
- }
+  ngOnInit() {
+    const msg = 'ngOnInit: justo después de que Angular inicializa el componente';
+    console.log('-'.repeat(10));
+    console.log(msg);
+    console.log('Duration =>', this.duration);
+    console.log('Message =>', this.message);
+    this.lifecycleLog.push(msg);
+  }
+
+  ngAfterViewInit() {
+    const msg = 'ngAfterViewInit: cuando la vista del componente ha sido completamente inicializada';
+    console.log('-'.repeat(10));
+    console.log(msg);
+    this.lifecycleLog.push(msg);
+  }
+
+  ngOnDestroy() {
+    const msg = 'ngOnDestroy: justo antes de que el componente sea destruido';
+    console.log('-'.repeat(10));
+    console.log(msg);
+    this.lifecycleLog.push(msg);
+  }
+
+  doSomethisg() {
+    const msg = 'doSomethisg(): lógica cuando cambia duration';
+    console.log(msg);
+    this.lifecycleLog.push(msg);
+  }
 }
