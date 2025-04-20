@@ -2,7 +2,7 @@ import { Component, Input, Output, EventEmitter} from '@angular/core';
 import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-product',
-  standalone:true,
+  standalone: true,
   imports: [CommonModule],
   templateUrl: './product.component.html',
   styleUrl: './product.component.css'
