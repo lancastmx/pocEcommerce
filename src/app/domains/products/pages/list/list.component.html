@@ -2,9 +2,11 @@
 <h1 class="text-3xl font-bold underline">
   Yo soy tu padre
 </h1>
+<div class="grid grid-cols-4">
+  <app-product
+    [title]="'Product 1'"
+    [price]="3"
+    [img]="'https://picsum.photos/200/300'"
+    (addToCard)="fromChild($event)"/>
 
-<app-product
-[title]="'Product 1'"
-[price]="3"
-[img]="'https://picsum.photos/200/300'"
-(addToCard)="fromChild($event)"/>
+</div>
