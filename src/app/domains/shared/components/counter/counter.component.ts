@@ -1,9 +1,13 @@
 import { Component, Input, SimpleChange } from '@angular/core';
 import { CommonModule } from '@angular/common';
+// Component
+import { ProductComponent } from '../../../products/components/product/product.component';
 @Component({
   selector: 'app-counter',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,
+    ProductComponent
+  ],
   templateUrl: './counter.component.html',
   styleUrl: './counter.component.css'
 })
@@ -12,13 +16,33 @@ export class CounterComponent {
  @Input() message: string = '';
 
  constructor(){
-  console.log('constructor');
+    // Before render
   console.log('-'.repeat(10))
+  console.log('constructor');
+
  }
 
  ngOnChanges(changes: SimpleChange){
-  console.log('constructor');
+  // Before and during render
   console.log('-'.repeat(10));
+  console.log('ngOnChange');
   console.log(changes);
+ }
+
+ ngOnInit(){
+    // Before and during render
+    console.log('-'.repeat(10));
+    console.log('ngOnInit');
+    console.log('Duration =>', this.duration)
+    console.log('Message =>', this.message)
+ }
+ ngAfterViewInit(){
+  console.log('-'.repeat(10));
+  console.log('ngAfterViewInit');
+ }
+
+ ngOnDestroy(){
+  console.log('-'.repeat(10));
+  console.log('ngOnDestroy');
  }
 }

@@ -5,4 +5,11 @@
 <p>
   <input type="text" [value]="message()" (change)="changeMessage($event)" >
 </p>
-<app-counter [duration]="duration()" [message]="message()" />
+@if (duration() < 1000) {
+  <app-counter [duration]="duration()" [message]="message()"  />
+  <div class="grid grid-cols-6">
+    <app-product/>
+  </div>
+
+}
+
