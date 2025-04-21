@@ -50,11 +50,15 @@ export class CounterComponent {
     console.log('Duration =>', this.duration);
     console.log('Message =>', this.message);
     this.lifecycleLog.push(msg);
-    this.conunterRef = window.setInterval(() => {
-      this.counter.update(statePrev => statePrev + 1);
-      console.log('Counter =>', this.counter());
-    }, 1000);
+
+    if (typeof window !== 'undefined') {
+      this.conunterRef = window.setInterval(() => {
+        this.counter.update(statePrev => statePrev + 1);
+        console.log('Counter =>', this.counter());
+      }, 1000);
+    }
   }
+
 
   ngAfterViewInit() {
     setTimeout(() => {
@@ -71,9 +75,13 @@ export class CounterComponent {
     console.log('-'.repeat(10));
     console.log(msg);
     this.lifecycleLog.push(msg);
-    window.clearInterval(this.conunterRef);
-    console.log('Counter =>', this.counter());
+
+    if (typeof window !== 'undefined') {
+      window.clearInterval(this.conunterRef);
+      console.log('Counter =>', this.counter());
+    }
   }
+
 
   doSomethisg() {
     const msg = 'doSomethisg(): lógica cuando cambia duration';

@@ -1,16 +1,9 @@
-<p>about works!</p>
-<p>
-  <input type="number" [value]="duration()" (change)="changeDuration($event)" >
-</p>
-<p>
-  <input type="text" [value]="message()" (change)="changeMessage($event)" >
-</p>
-@if (duration() < 1000) {
-  <app-counter [duration]="duration()" [message]="message()"  />
-  <div class="grid grid-cols-6">
-    <app-product/>
+
+<div class="container mx-auto px-4 py-8">
+  <h1>About</h1>
+  <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore, culpa dolores fugiat, mollitia autem, dolor enim perferendis praesentium quo quam dolorem doloribus eos eum repellat maxime corrupti? Nesciunt, magni pariatur!</p>
+  <p>Nuestros clientes estan creciendo ></p>
+  <div>
+    <app-wave-audio [audioUrl]="audioFile"></app-wave-audio>
   </div>
-
-}
-
-<app-wave-audio/>
+</div>

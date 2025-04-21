@@ -1,4 +1,8 @@
 <p>wave-audio works!</p>
 <div>
   <div #waveform></div>
+  <button (click)="playPause()">
+    {{ isPlaying() ? '⏸ Pausar' : '▶️ Reproducir' }}
+  </button>
 </div>
+
