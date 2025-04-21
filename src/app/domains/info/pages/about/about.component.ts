@@ -3,13 +3,15 @@ import { CommonModule } from '@angular/common';
 import { CounterComponent } from '../../../shared/components/counter/counter.component';
 // Component
 import { ProductComponent } from '../../../products/components/product/product.component';
+import { WaveAudioComponent } from '../../../products/components/wave-audio/wave-audio.component';
 @Component({
   selector: 'app-about',
   standalone: true,
   imports: [
     CommonModule,
     CounterComponent,
-    ProductComponent
+    ProductComponent,
+    WaveAudioComponent
   ],
   templateUrl: './about.component.html',
   styleUrl: './about.component.css'
