@@ -1,4 +1,15 @@
-<p>counter works!</p>
+<p>counter works! {{counter()}} </p>
+    <!-- <ul>
+      @for (log of lifecycleLog; track log) {
+        <li>{{ log}}</li>
+        } @empty {
+        <li>There are no items.</li>
+        }
+    </ul> -->
 <ul>
-  <li *ngFor="let log of lifecycleLog">{{ log }}</li>
+  @for (log of lifecycleLog; let i = $index; track i) {
+    <li>{{ log }}</li>
+  } @empty {
+    <li>No hay elementos.</li>
+  }
 </ul>
