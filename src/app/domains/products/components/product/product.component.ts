@@ -1,3 +1,4 @@
+import { Product } from './../../../shared/components/counter/models/product.model';
 import { Component, Input, Output, EventEmitter} from '@angular/core';
 import { CommonModule } from '@angular/common';
 @Component({
@@ -8,9 +9,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './product.component.css'
 })
 export class ProductComponent {
-  @Input() img: string = "";
-  @Input() price: number = 0;
-  @Input() title: string = "";
+  @Input({required: true}) product!: Product;
   @Output() addToCard = new EventEmitter();
 
   addToCardHandler(){

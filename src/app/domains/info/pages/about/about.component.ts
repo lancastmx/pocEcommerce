@@ -10,8 +10,6 @@ import { AUDIO_ASSETS } from '../../../../../assets/assets.constants';
   standalone: true,
   imports: [
     CommonModule,
-    CounterComponent,
-    ProductComponent,
     WaveAudioComponent
   ],
   templateUrl: './about.component.html',
