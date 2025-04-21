@@ -1,5 +1,7 @@
 import { Component, Input, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+// components
+import { HeaderComponent } from '../../../shared/componenets/header/header.component';
 import { ProductComponent } from '../../components/product/product.component';
 // models
 import { Product } from '../../../shared/components/counter/models/product.model';
@@ -7,10 +9,11 @@ import { Product } from '../../../shared/components/counter/models/product.model
 // services
 import { ProductService } from './services/product.service';
 
+
 @Component({
   selector: 'app-list',
   standalone: true,
-  imports: [CommonModule, ProductComponent],
+  imports: [CommonModule, ProductComponent, HeaderComponent],
   templateUrl: './list.component.html',
   styleUrl: './list.component.css'
 })
