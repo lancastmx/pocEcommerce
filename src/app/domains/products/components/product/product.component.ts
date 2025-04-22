@@ -12,8 +12,8 @@ export class ProductComponent {
   @Input({required: true}) product!: Product;
   @Output() addToCard = new EventEmitter();
 
-  addToCardHandler(){
-    console.log('Hola pa')
-    this.addToCard.emit('ya me escuchas padre')
+  addToCart(){
+    console.log(this.product);
+    this.addToCard.emit(this.product);
   }
 }

@@ -39,6 +39,7 @@
       </ul>
     </div>
     <div class="flex items-center">
+      <span>{{ cart.length}} </span>
       <button class="px-4" (click)="toggleSideMenu()">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -80,5 +81,14 @@
         />
       </svg>
     </button>
+  </div>
+  <div>
+    @for(product of cart; track product){
+      <app-product
+          [product]="product"
+          />
+    } @empty {
+            <h3> Si productos</h3>
+          }
   </div>
 </div>

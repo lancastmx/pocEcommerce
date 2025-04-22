@@ -1,14 +1,21 @@
 <div class="bg-white m-1">
   <div class="group rounded-lg border">
-    <a href="#" class="w overflow-hidden rounded-t-lg bg-gray-200">
-        <img [src]="product.img" [alt]="product.title" class=" object-cover object-center group-hover:opacity-75">
-    </a>
+    <div class="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-t-lg">
+      <a (click)="addToCart()" class="block h-full">
+        <img
+          [src]="product.img"
+          [alt]="product.title"
+          class="h-full w-full object-cover object-center group-hover:opacity-75 transition-opacity duration-300"
+        >
+      </a>
+    </div>
     <div class="flex flex-col space-y-2 p-4">
         <h3 class="text-sm text-gray-700">{{ product.name }}</h3>
         <p class="text-lg font-medium text-gray-900">{{product.price}}</p>
-        <button class="btn btn text-black bg-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 w-full"
-            (click)="addToCardHandler()">Add to cart</button>
+
     </div>
+    <button class="btn cursor-pointer text-black bg-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 w-full"
+            (click)="addToCart()">Add to cart</button>
   </div>
 </div>
 

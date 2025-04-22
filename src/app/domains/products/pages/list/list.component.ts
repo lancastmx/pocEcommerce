@@ -20,13 +20,13 @@ import { ProductService } from './services/product.service';
 export class ListComponent {
 
   products = signal<Product[]>([]);
+  cart = signal<Product[]>([]);
 
   constructor(private productService: ProductService) {
     this.products.set(this.productService.getProducts());
   }
 
-  fromChild(event: string) {
-    console.log('Te escucho hijo');
-    console.log(event);
+  addToCart(product: Product) {
+    this.cart.update(prevState => [...prevState, product]);
   }
 }
