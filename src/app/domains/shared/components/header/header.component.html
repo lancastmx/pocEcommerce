@@ -83,6 +83,9 @@
     </button>
   </div>
   <div>
+    <p>{{ total() }}</p>
+  </div>
+  <div>
     @for(product of cart; track product){
       <app-product
           [product]="product"

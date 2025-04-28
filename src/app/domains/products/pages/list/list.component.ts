@@ -1,7 +1,7 @@
 import { Component, Input, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 // components
-import { HeaderComponent } from '../../../shared/componenets/header/header.component';
+import { HeaderComponent } from '../../../shared/components/header/header.component';
 import { ProductComponent } from '../../components/product/product.component';
 // models
 import { Product } from '../../../shared/components/counter/models/product.model';
