@@ -38,9 +38,14 @@
         </li>
       </ul>
     </div>
+    <p>{{ total() }}</p>
+
+
     <div class="flex items-center">
-      <span>{{ cart.length}} </span>
-      <button class="px-4" (click)="toggleSideMenu()">
+      <button class="pointer px-4 border rounded relative" (click)="toggleSideMenu()">
+        <div class="absolute -top-4 -left-4 rounded h-5 w-5 bg-black text-white text-xs flex items-center">
+          {{ cart.length}}
+         </div>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -87,11 +92,21 @@
   </div>
   <div>
     @for(product of cart; track product){
-      <app-product
-          [product]="product"
-          />
+      <div class="flex justify-between items-center">
+      <div class="flex items-center space-x-2 m-2">
+        <img
+          [src]="product.img"
+          [alt]="product.title"
+          class="h-10 w-10 border-l-4 object-cover object-center group-hover:opacity-75 transition-opacity duration-300"
+        />
+        <p>{{ product.title}} </p>
+        <p>{{ product.price}} </p>
+    </div>
+  </div>
     } @empty {
             <h3> Si productos</h3>
           }
   </div>
 </div>
+
+
