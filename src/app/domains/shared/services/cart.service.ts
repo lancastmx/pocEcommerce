@@ -17,11 +17,5 @@ export class CartService {
 
   addToCart(product: Product) {
     this.cart.update(state => [...state, product]);
-  //   const existingProduct = this.cart().find(item => item.id === product.id);
-  //   if (existingProduct) {
-  //     existingProduct.quantity! += product.quantity!;
-  //   } else {
-  //     this.cart.update(cart => [...cart, product]);
-  //   }
   }
 }
