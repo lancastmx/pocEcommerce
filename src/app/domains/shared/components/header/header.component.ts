@@ -11,21 +11,13 @@ import { CartService } from '../../services/cart.service';
 })
 export class HeaderComponent {
   hideSideMenu = signal(true);
-  @Input({required:true}) cart:Product[] = [];
-  total = signal(0);
+
+  private cartService = inject(CartService);
+  cart = this.cartService.cart;
+  total = this.cartService.total;
 
    toggleSideMenu() {
       this.hideSideMenu.update((prev) => !prev);
-    }
-    ngOnChanges(changes: SimpleChanges) {
-      const cart = changes['cart'];
-      if (cart) {
-        this.total.set(this.calcularTotal());
-      }
-      console.log('Cambió el carrito', cart.currentValue);
-    }
-    calcularTotal() {
-      return this.cart.reduce((total, product) => total + (product.price ?? 0), 0);
     }
 
 }
