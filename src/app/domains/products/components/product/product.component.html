@@ -10,13 +10,53 @@
       </a>
     </div>
     <div class="flex flex-col space-y-2 p-4">
-        <h3 class="text-sm text-gray-700">{{ product.title | uppercase}}</h3>
-        <p class="text-lg font-medium text-gray-900">{{product.description}}</p>
-        <p class="text-lg font-medium text-gray-900">{{product.price | currency: '$': 'synbol': '1.0'}}</p>
+        <h3 class="text-sm text-gray-700" [innerHTML]="product.title | estiloDivertido"></h3>
+
+        <p class="text-lg font-medium text-gray-900">{{product.price | currency: '$': 'symbol': '1.0'}}</p>
 
     </div>
+    <div class="flex flex-col space-y-2 p-4">
+
+      <h3 class="text-sm text-gray-700 contenedor-lectura-bionica"
+          [innerHTML]="product.title | lecturaBionica">
+      </h3>
+
+      <p class="contenedor-lectura-bionica"
+         [innerHTML]="'Este es un texto de prueba más largo para ver cómo funciona el estilo de lectura biónica y el espaciado.' | lecturaBionica">
+      </p>
+
+      <p class="text-lg font-medium text-gray-900">{{product.price | currency: '$': 'symbol': '1.0'}}</p>
+
+  </div>
+
     <button class="btn cursor-pointer text-black bg-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 w-full"
             (click)="addToCart()">Add to cart</button>
   </div>
+  <p class="text-sm text-gray-700 product-title-dynamic"> <span *ngFor="let segment of processedText"> <span [style.font-weight]="getWeight(segment)">{{ segment.text }}</span>
+  </span>
+</p>
+<div class="bg-white m-1">
+  <div class="group rounded-lg border">
+    <div class="flex flex-col space-y-2 p-4">
+
+      <p class="text-sm text-gray-700 product-title-dynamic mb-4"> <span *ngFor="let segment of processedText">
+            <span [style.font-weight]="getWeight(segment)">{{ segment.text }}</span>
+        </span>
+      </p>
+
+      <div class="flex items-center justify-center space-x-2 border-t pt-2">
+          <button (click)="decreaseSpeed()" title="Más lento" class="p-1 border rounded">-</button>
+          <button (click)="toggleWave()" class="p-1 border rounded px-2">
+              {{ isWaveActive ? 'Desactivar Ola' : 'Activar Ola' }}
+          </button>
+          <button (click)="increaseSpeed()" title="Más rápido" class="p-1 border rounded">+</button>
+          <span class="text-xs text-gray-500 ml-2">({{ currentWpm }} WPM)</span> </div>
+
+      <p class="text-lg font-medium text-gray-900 mt-2">{{product.price | currency: '$': 'symbol': '1.0'}}</p>
+
+    </div>
+
+    </div>
+</div>
 </div>
 

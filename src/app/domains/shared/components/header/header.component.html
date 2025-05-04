@@ -47,6 +47,7 @@
     </div>
 
 
+
     <div class="flex items-center">
       <button class="pointer px-4 border rounded relative" (click)="toggleSideMenu()">
         <div class="absolute -top-4 -left-4 rounded h-5 w-5 bg-black text-white text-xs">
@@ -93,7 +94,7 @@
       </svg>
     </button>
   </div>
-
+  <p>{{ total() | currency: '$': 'symbol': '1.0' }}</p>
   <div>
     @for(product of cart(); track product){
       <div class="flex justify-between items-center">
@@ -104,7 +105,7 @@
           class="h-10 w-10 border-l-4 object-cover object-center group-hover:opacity-75 transition-opacity duration-300"
         />
         <p>{{ product.title}} </p>
-        <p>{{ product.price}} </p>
+        <p>{{ product.price | currency: '$': 'symbol': '1.0'}} </p>
     </div>
   </div>
     } @empty {
