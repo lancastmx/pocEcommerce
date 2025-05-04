@@ -8,7 +8,8 @@ import { ProductComponent } from '../../components/product/product.component';
 import { Product } from '../../../shared/components/counter/models/product.model';
 
 // services
-import { ProductService } from './services/product.service';
+import { ProductService } from '../../../shared/services/product.service';
+
 
 
 @Component({
@@ -22,12 +23,22 @@ export class ListComponent {
 
   products = signal<Product[]>([]);
   private CartService = inject(CartService);
+  private productService = inject(ProductService);
 
-  constructor(private productService: ProductService) {
-    this.products.set(this.productService.getProducts());
+  constructor() {
+
   }
+  ngOnInit() {
+   this.productService.getProducts()
+   .subscribe({
+    next: (products) => {
+      this.products.set(products);
+    },
+   })
 
+  }
   addToCart(product: Product) {
     this.CartService.addToCart(product);
   }
+
 }

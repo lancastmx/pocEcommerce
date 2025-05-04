@@ -94,15 +94,13 @@
       </svg>
     </button>
   </div>
-  <div>
-    <p>{{ total() }}</p>
-  </div>
+
   <div>
     @for(product of cart(); track product){
       <div class="flex justify-between items-center">
       <div class="flex items-center space-x-2 m-2">
         <img
-          [src]="product.img"
+          [src]="product.images"
           [alt]="product.title"
           class="h-10 w-10 border-l-4 object-cover object-center group-hover:opacity-75 transition-opacity duration-300"
         />
