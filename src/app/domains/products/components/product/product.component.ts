@@ -3,7 +3,7 @@ import { Component, Input, Output, EventEmitter, SimpleChanges, Inject,PLATFORM_
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { EstiloDivertidoPipe } from '../../../shared/pipe/estilo-divertido.pipe';
 import { LecturaBionicaPipe } from '../../../shared/pipe/lectura-bionica.pipe';
-
+import { WordHighlighterComponent } from '../../../shared/pipe/word-highlighter/word-highlighter.component';
 interface TextSegment {
   text: string;
   isWord: boolean;
@@ -13,7 +13,7 @@ interface TextSegment {
 @Component({
   selector: 'app-product',
   standalone: true,
-  imports: [CommonModule, EstiloDivertidoPipe, LecturaBionicaPipe ],
+  imports: [CommonModule, EstiloDivertidoPipe, LecturaBionicaPipe,WordHighlighterComponent ],
   templateUrl: './product.component.html',
   styleUrl: './product.component.css'
 })
@@ -21,6 +21,8 @@ export class ProductComponent implements OnInit, OnDestroy, OnChanges{
   @Input({required: true}) product!: Product;
   @Output() addToCard = new EventEmitter();
   // Texto y procesamiento (sin cambios)
+  miTextoParaResaltar = "El sol apenas despuntaba cuando Mateo, el farero, subió la interminable escalera de caracol. Cada noche, su luz era la guía segura para los barcos perdidos en la niebla. Esa mañana, sin embargo, encontró una pequeña gaviota con un ala herida en el balcón del faro. Con cuidado, la recogió y la llevó a su cálida cocina. Durante días, la alimentó y vendó su ala, hablándole de mareas y constelaciones. Cuando la gaviota finalmente pudo volar, dio tres vueltas alrededor del faro antes de perderse en el azul infinito, un silencioso agradecimiento al guardián de la costa.";
+
   private readonly loremIpsumText = "El sol apenas despuntaba cuando Mateo, el farero, subió la interminable escalera de caracol. Cada noche, su luz era la guía segura para los barcos perdidos en la niebla. Esa mañana, sin embargo, encontró una pequeña gaviota con un ala herida en el balcón del faro. Con cuidado, la recogió y la llevó a su cálida cocina. Durante días, la alimentó y vendó su ala, hablándole de mareas y constelaciones. Cuando la gaviota finalmente pudo volar, dio tres vueltas alrededor del faro antes de perderse en el azul infinito, un silencioso agradecimiento al guardián de la costa.";
 // (102 palabras)
 //  private readonly loremIpsumText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";

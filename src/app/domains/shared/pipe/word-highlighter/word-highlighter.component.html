@@ -1,0 +1,24 @@
+<div class="word-highlighter-container">
+  <p class="highlightable-text">
+    <span *ngFor="let segment of processedText">
+      <span [style.font-weight]="getWordWeight(segment)">{{ segment.text  }}</span>
+    </span>
+
+  </p>
+  <p class="contenedor-lectura-bionica"
+  [innerHTML]="textToHighlight | lecturaBionica">
+</p>
+  <div class="controls">
+    <button (click)="start()" [disabled]="isActive">Iniciar</button>
+    <button (click)="togglePauseResume()" [disabled]="!isActive">
+      {{ isPaused ? 'Reanudar' : 'Pausa' }}
+    </button>
+    <button (click)="reset()">Reiniciar</button>
+
+    <span class="speed-controls">
+      <button (click)="decreaseSpeed()" title="Más lento">-</button>
+      <span>{{ currentWpm }} WPM</span>
+      <button (click)="increaseSpeed()" title="Más rápido">+</button>
+    </span>
+  </div>
+</div>

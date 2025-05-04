@@ -1,0 +1,57 @@
+.word-highlighter-container {
+  /* Estilos del contenedor si son necesarios */
+}
+
+.highlightable-text {
+  /* *** Fuente con pesos 400 y 700 *** */
+  font-family: 'Inter', Arial, sans-serif;
+  font-size: 18px; /* Ajusta según necesites */
+  line-height: 1.7;
+  font-weight: 400; /* Peso por defecto */
+  /* Otros estilos para el párrafo */
+  padding: 10px;
+  border: 1px solid #eee;
+  margin-bottom: 15px;
+}
+
+/* Estilo para los spans internos donde se aplica el peso */
+.highlightable-text span > span {
+  display: inline !important; /* Ayuda a evitar saltos raros */
+  /* Transición suave opcional */
+  transition: font-weight 0.15s ease-out;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  padding: 10px;
+  border-top: 1px solid #eee;
+}
+
+.controls button {
+  padding: 5px 10px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  background-color: #f8f8f8;
+  border-radius: 4px;
+}
+
+.controls button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.speed-controls {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: auto; /* Empuja controles de velocidad a la derecha */
+}
+
+.speed-controls span {
+  font-size: 0.9em;
+  min-width: 60px; /* Espacio para WPM */
+  text-align: center;
+}
