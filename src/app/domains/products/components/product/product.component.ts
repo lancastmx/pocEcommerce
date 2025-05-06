@@ -1,9 +1,6 @@
 import { Product } from './../../../shared/components/counter/models/product.model';
-import { Component, Input, Output, EventEmitter, SimpleChanges, Inject,PLATFORM_ID, OnInit, OnDestroy, OnChanges,} from '@angular/core';
+import { Component, Output, EventEmitter, SimpleChanges, Inject, PLATFORM_ID, OnInit, OnDestroy, OnChanges, input } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { EstiloDivertidoPipe } from '../../../shared/pipe/estilo-divertido.pipe';
-import { LecturaBionicaPipe } from '../../../shared/pipe/lectura-bionica.pipe';
-import { WordHighlighterComponent } from '../../../shared/pipe/word-highlighter/word-highlighter.component';
 interface TextSegment {
   text: string;
   isWord: boolean;
@@ -13,12 +10,12 @@ interface TextSegment {
 @Component({
   selector: 'app-product',
   standalone: true,
-  imports: [CommonModule, EstiloDivertidoPipe, LecturaBionicaPipe,WordHighlighterComponent ],
+  imports: [CommonModule,],
   templateUrl: './product.component.html',
   styleUrl: './product.component.css'
 })
 export class ProductComponent implements OnInit, OnDestroy, OnChanges{
-  @Input({required: true}) product!: Product;
+  readonly product = input.required<Product>();
   @Output() addToCard = new EventEmitter();
   // Texto y procesamiento (sin cambios)
   miTextoParaResaltar = "El sol apenas despuntaba cuando Mateo, el farero, subió la interminable escalera de caracol. Cada noche, su luz era la guía segura para los barcos perdidos en la niebla. Esa mañana, sin embargo, encontró una pequeña gaviota con un ala herida en el balcón del faro. Con cuidado, la recogió y la llevó a su cálida cocina. Durante días, la alimentó y vendó su ala, hablándole de mareas y constelaciones. Cuando la gaviota finalmente pudo volar, dio tres vueltas alrededor del faro antes de perderse en el azul infinito, un silencioso agradecimiento al guardián de la costa.";
@@ -52,7 +49,7 @@ export class ProductComponent implements OnInit, OnDestroy, OnChanges{
 
   ngOnChanges(changes: SimpleChanges): void {
      if (changes['product'] && !changes['product'].firstChange) {
-       console.log('Product input changed:', this.product);
+       console.log('Product input changed:', this.product());
      }
      // Si el producto cambia, podríamos querer detener la ola si está activa
      // if(this.isWaveActive) {
@@ -67,7 +64,7 @@ export class ProductComponent implements OnInit, OnDestroy, OnChanges{
   }
 
   addToCart() {
-    this.addToCard.emit(this.product);
+    this.addToCard.emit(this.product());
   }
 
   // --- NUEVOS MÉTODOS PARA CONTROLES ---
