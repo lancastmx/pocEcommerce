@@ -1,0 +1,16 @@
+<style>
+  .scene      { min-height:100vh; display:flex; justify-content:center; align-items:center; background:#111; }
+  .tri-wrap   { position:relative; width:400px; height:346px; } /* 400 × (√3/2) */
+  .tri        { position:absolute; width:50%; aspect-ratio:1 / 0.866; } /* Equilátero */
+  .tri.top    { left:50%; top:0; transform:translateX(-50%); }
+  .tri.left   { left:0;   bottom:0; }
+  .tri.right  { right:0;  bottom:0; }
+</style>
+
+<section class="scene">
+  <div class="tri-wrap">
+    <sierpinski-canvas class="tri top"   depth="6" fill="#fafafa"></sierpinski-canvas>
+    <sierpinski-canvas class="tri left"  depth="6" fill="#fafafa"></sierpinski-canvas>
+    <sierpinski-canvas class="tri right" depth="6" fill="#fafafa"></sierpinski-canvas>
+  </div>
+</section>

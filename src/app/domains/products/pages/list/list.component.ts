@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 // components
 import { HeaderComponent } from '../../../shared/components/header/header.component';
 import { ProductComponent } from '../../components/product/product.component';
+import { SierpinskiCanvasComponent } from '../../../shared/sierpinski-canvas/sierpinski-canvas.component';
+import { MandelbrotCanvasComponent } from '../../../shared/mandelbrotCanvas/mandelbrotCanvas.component';
 // models
 import { Product } from '../../../shared/components/counter/models/product.model';
 
@@ -15,7 +17,7 @@ import { ProductService } from '../../../shared/services/product.service';
 @Component({
   selector: 'app-list',
   standalone: true,
-  imports: [CommonModule, ProductComponent, HeaderComponent],
+  imports: [CommonModule, ProductComponent, HeaderComponent, SierpinskiCanvasComponent, MandelbrotCanvasComponent ],
   templateUrl: './list.component.html',
   styleUrl: './list.component.css'
 })
