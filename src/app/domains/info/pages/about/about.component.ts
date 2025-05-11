@@ -12,7 +12,6 @@ import { HeaderComponent } from "../../../shared/components/header/header.compon
   imports: [
     CommonModule,
     WaveAudioComponent,
-    HeaderComponent
 ],
   templateUrl: './about.component.html',
   styleUrl: './about.component.css'
