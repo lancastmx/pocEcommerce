@@ -17,7 +17,7 @@ import { ProductService } from '../../../shared/services/product.service';
 @Component({
   selector: 'app-list',
   standalone: true,
-  imports: [CommonModule, ProductComponent, HeaderComponent, SierpinskiCanvasComponent, MandelbrotCanvasComponent ],
+  imports: [CommonModule, ProductComponent, HeaderComponent ],
   templateUrl: './list.component.html',
   styleUrl: './list.component.css'
 })
