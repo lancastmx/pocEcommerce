@@ -3,7 +3,7 @@
     class="w-full flex flex-wrap items-center justify-between mx-auto py-4"
   >
     <div class="flex items-center space-x-8">
-      <a href="https://flowbite.com/" class="flex items-center ">
+      <a routerLink="/" class="flex items-center ">
         <img
           src="https://flowbite.com/docs/images/logo.svg"
           class="h-6 mr-3"
@@ -16,23 +16,26 @@
       <ul class="flex space-x-6">
         <li>
           <a
-            href="#"
-            class="block underline hover:underline"
+            routerLink="/"
+            routerLinkActive="underline"
+            [routerLinkActiveOptions]="{ exact: true }"
             aria-current="page"
             >Home</a
           >
         </li>
         <li>
           <a
-            href="#"
-            class="block hover:underline"
+            routerLink="/about"
+            routerLinkActive="underline"
+            [routerLinkActiveOptions]="{ exact: true }"
             >About</a
           >
         </li>
         <li>
           <a
-            href="#"
-            class="block hover:underline"
+          routerLink="/services"
+            routerLinkActive="underline"
+            [routerLinkActiveOptions]="{ exact: true }"
             >Services</a
           >
         </li>

@@ -5,13 +5,15 @@ import { CounterComponent } from '../../../shared/components/counter/counter.com
 import { ProductComponent } from '../../../products/components/product/product.component';
 import { WaveAudioComponent } from '../../../products/components/wave-audio/wave-audio.component';
 import { AUDIO_ASSETS } from '../../../../../assets/assets.constants';
+import { HeaderComponent } from "../../../shared/components/header/header.component";
 @Component({
   selector: 'app-about',
   standalone: true,
   imports: [
     CommonModule,
-    WaveAudioComponent
-  ],
+    WaveAudioComponent,
+    HeaderComponent
+],
   templateUrl: './about.component.html',
   styleUrl: './about.component.css'
 })
