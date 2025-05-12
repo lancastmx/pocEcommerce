@@ -1,3 +1,4 @@
+import { CartService } from './../../../shared/services/cart.service';
 import { Component, inject, Input, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductService } from '../../../shared/services/product.service';
@@ -11,6 +12,8 @@ import { Product } from '../../../shared/components/counter/models/product.model
 export class ProductDetailComponent {
   @Input({required: true}) id!: number;
   private productService = inject(ProductService);
+  private CartService = inject(CartService);
+
  product = signal<Product | null>(null);
  cover = signal('')
 
@@ -30,5 +33,12 @@ export class ProductDetailComponent {
   }}
   chagecover(newImg: string) {
     this.cover.set(newImg);
+  }
+
+  addTocart() {
+    const product = this.product();
+    if (product) {
+      this.CartService.addToCart(product);
+    }
   }
 }
