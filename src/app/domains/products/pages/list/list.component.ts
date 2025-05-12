@@ -1,4 +1,4 @@
-import { CartService } from './../../../shared/services/cart.service';
+
 import { Component, inject, Input, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 // components
@@ -8,9 +8,12 @@ import { SierpinskiCanvasComponent } from '../../../shared/sierpinski-canvas/sie
 import { MandelbrotCanvasComponent } from '../../../shared/mandelbrotCanvas/mandelbrotCanvas.component';
 // models
 import { Product } from '../../../shared/components/counter/models/product.model';
+import { Category } from './../../../shared/components/counter/models/category.model';
 
 // services
+import { CartService } from './../../../shared/services/cart.service';
 import { ProductService } from '../../../shared/services/product.service';
+import { CategoryService } from '../../../shared/services/category.service';
 
 
 
@@ -22,25 +25,50 @@ import { ProductService } from '../../../shared/services/product.service';
   styleUrl: './list.component.css'
 })
 export class ListComponent {
-
+  originalProducts = signal<Product[]>([]);
   products = signal<Product[]>([]);
+  categories = signal<Category[]>([]);
   private CartService = inject(CartService);
   private productService = inject(ProductService);
+  private CategoryService = inject(CategoryService);
 
   constructor() {
 
   }
   ngOnInit() {
-   this.productService.getProducts()
-   .subscribe({
-    next: (products) => {
-      this.products.set(products);
-    },
-   })
-
+   this.getProdct();
+   this.getCategory();
   }
   addToCart(product: Product) {
     this.CartService.addToCart(product);
   }
 
+  private getProdct() {
+    this.productService.getProducts().subscribe({
+      next: (products) => {
+        this.originalProducts.set(products);
+        this.products.set(products);
+      },
+    });
+  }
+
+
+ private getCategory(){
+    this.CategoryService.getAll()
+   .subscribe({
+    next: (categories) => {
+      this.categories.set(categories);
+    },
+   })
+  }
+
+  filterByCategory(categoryId: number) {
+    const allProducts = this.originalProducts();
+    const filtered = allProducts.filter(p => p.category.id === categoryId);
+    this.products.set(filtered);
+  }
+
+  showAllProducts() {
+    this.products.set(this.originalProducts());
+  }
 }

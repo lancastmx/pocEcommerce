@@ -1,3 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
 @import "tailwindcss";
 /* src/styles.css o styles.scss */
+/* Estilos globales para line-height */
+li,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.75; /* Ajusta este valor según tus necesidades */
+}
+
+/* src/styles.css o styles.scss */
+.lh-relaxed {
+  line-height: 1.75; /* Ajusta este valor según tus necesidades */
+}
