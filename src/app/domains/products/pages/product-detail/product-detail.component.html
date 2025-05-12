@@ -4,31 +4,26 @@
       <img
         alt="ecommerce"
         class="w-full object-cover object-center"
-        src="https://www.whitmorerarebooks.com/pictures/medium/2465.jpg"
+        [src]="cover()"
       />
     </div>
     <div class="flex items-center justify-center mt-1">
       <div class="grid grid-cols-3 gap-1">
-        <img
+        @for (image of product()?.images; track image){
+          <img
           alt="ecommerce"
           class="object-cover object-center rounded border-2 border-gray-200"
-          src="https://www.whitmorerarebooks.com/pictures/medium/2465.jpg"
+          [src]="image"
+          (click)="chagecover(image)"
         />
-        <img
-          alt="ecommerce"
-          class="w-full object-cover object-center rounded border-2 border-gray-200"
-          src="https://www.whitmorerarebooks.com/pictures/medium/2465.jpg"
-        />
-        <img
-          alt="ecommerce"
-          class="w-full object-cover object-center rounded border-2 border-gray-200"
-          src="https://www.whitmorerarebooks.com/pictures/medium/2465.jpg"
-        />
+        } @empty {
+          <h3> Si productos</h3>
+        }
       </div>
     </div>
   </div>
   <div class="mt-5 w-full">
-    <h2 class="text-sm title-font text-gray-500 tracking-widest">BRAND NAME</h2>
+    <h2 class="text-sm title-font text-gray-500 tracking-widest">{{product()?.category?.name | uppercase}}</h2>
     <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">
       {{ product()?.title }}
     </h1>

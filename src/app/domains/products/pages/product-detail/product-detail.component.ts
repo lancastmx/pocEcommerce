@@ -12,6 +12,7 @@ export class ProductDetailComponent {
   @Input({required: true}) id!: number;
   private productService = inject(ProductService);
  product = signal<Product | null>(null);
+ cover = signal('')
 
   ngOnInit() {
     if (this.id) {
@@ -19,10 +20,15 @@ export class ProductDetailComponent {
       .subscribe({
         next: (product) => {
           this.product.set(product);
+          if (product.images.length > 0) {
+            this.cover.set(product.images[0]);}
         },
         error: (err) => {
           console.error(err);
         }
       })
   }}
+  chagecover(newImg: string) {
+    this.cover.set(newImg);
+  }
 }
