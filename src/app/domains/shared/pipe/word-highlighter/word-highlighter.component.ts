@@ -14,26 +14,26 @@ interface WordSegment {
   templateUrl: './word-highlighter.component.html',
   styleUrl: './word-highlighter.component.css'
 })
-export class WordHighlighterComponent {
-  @Input() textToHighlight: string = ''; // Recibe el texto como Input
+export class WordHighlighterComponent implements OnInit, OnChanges, OnDestroy {
+  @Input() textToHighlight = ''; // Recibe el texto como Input
 
   // --- Estado del componente ---
   processedText: WordSegment[] = [];
-  isActive: boolean = false;
-  isPaused: boolean = false;
-  activeWordIndex: number = -1; // -1 indica que no hay palabra activa inicialmente
-  private totalWordCount: number = 0;
+  isActive = false;
+  isPaused = false;
+  activeWordIndex = -1; // -1 indica que no hay palabra activa inicialmente
+  private totalWordCount = 0;
   private intervalId: any = null;
 
   // --- Configuración ---
-  intervalMs: number = 600; // Intervalo base en ms (600ms ≈ 100 WPM)
+  intervalMs = 600; // Intervalo base en ms (600ms ≈ 100 WPM)
   readonly minIntervalMs: number = 200;
   readonly maxIntervalMs: number = 2000;
   readonly speedStepMs: number = 100;
   readonly defaultWeight = 400;
   readonly highlightWeight = 700; // Solo usamos 700 y 400
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+  constructor(@Inject(PLATFORM_ID) private platformId: object) {}
 
   ngOnInit(): void {
     this.parseText(this.textToHighlight);

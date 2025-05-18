@@ -7,7 +7,7 @@ import { Product } from '../components/counter/models/product.model';
 })
 export class ProductService {
   private http = inject(HttpClient)
-  constructor() { }
+
 
   getProducts() {
     return this.http.get<Product[]>(`https://api.escuelajs.co/api/v1/products`)

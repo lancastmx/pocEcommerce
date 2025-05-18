@@ -4,12 +4,10 @@ import {
   ElementRef,
   Input,
   ViewChild,
-  signal,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'sierpinski-canvas',
   standalone: true,
   imports: [CommonModule],
   template: `<canvas #canvas></canvas>`,
@@ -22,13 +20,12 @@ import { CommonModule } from '@angular/common';
 export class SierpinskiCanvasComponent implements AfterViewInit {
   @ViewChild('canvas', { static: true }) canvasEl!: ElementRef<HTMLCanvasElement>;
 
-  /** 🔢 Profundidad recursiva (más → más detalle → más draw calls) */
-  @Input() depth: number = 6;
 
-  /** 🎨 Color de relleno */
+  @Input() depth = 6;
+
   @Input() fill = '#000';
 
-  /** ↕️ Responsive: redibuja al cambiar size del host */
+
   private resizeObserver?: ResizeObserver;
 
   ngAfterViewInit() {
@@ -38,9 +35,7 @@ export class SierpinskiCanvasComponent implements AfterViewInit {
     this.resizeObserver.observe(this.canvasEl.nativeElement);
   }
 
-  /** ----------------------------------------------------------------
-   *  🖌️ Lógica de dibujo recursivo – IFS estilo Sierpinski
-   *  ---------------------------------------------------------------*/
+
   private draw() {
     const canvas = this.canvasEl.nativeElement;
     const ctx = canvas.getContext('2d')!;
@@ -61,7 +56,6 @@ export class SierpinskiCanvasComponent implements AfterViewInit {
     this.drawTriangle(ctx, p1, p2, p3, this.depth);
   }
 
-  /** 🚩 Función recursiva */
   private drawTriangle(
     ctx: CanvasRenderingContext2D,
     a: { x: number; y: number },
@@ -90,7 +84,7 @@ export class SierpinskiCanvasComponent implements AfterViewInit {
     this.drawTriangle(ctx, ca,  bc, c,  n - 1);
   }
 
-  /** 🧮 Helper */
+
   private midPoint(p: {x:number;y:number}, q:{x:number;y:number}) {
     return { x: (p.x + q.x) / 2, y: (p.y + q.y) / 2 };
   }

@@ -1,21 +1,34 @@
 
 <div class="flex space-x-4">
   <div>
+   <div class="flex space-x-4">
+  <div>
     <ul>
-      <li class="text-sm text-blue-500 cursor-pointer" (click)="showAllProducts()">
-        Mostrar todos
+      <li>
+        <button
+          class="text-sm text-blue-500 cursor-pointer"
+          (click)="showAllProducts()"
+        >
+          Mostrar todos
+        </button>
       </li>
-      @for (category of categories(); track category){
+      @for (category of categories(); track category) {
         <li class="text-gray-500 text-sm">
-          <a
+          <button
             class="cursor-pointer hover:text-red-500"
             (click)="filterByCategory(category.id)"
           >
             {{ category.name }}
-          </a>
-          </li>} @empty {
-        <h3> Si categorias</h3> }
+          </button>
+        </li>
+      } @empty {
+        <h3>Sin categorías</h3>
+      }
     </ul>
+  </div>
+
+</div>
+
   </div>
   <div class="grid mt-5">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">

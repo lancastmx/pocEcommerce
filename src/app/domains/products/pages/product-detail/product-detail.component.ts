@@ -1,5 +1,5 @@
 import { CartService } from './../../../shared/services/cart.service';
-import { Component, inject, Input, signal } from '@angular/core';
+import { Component, inject, Input, signal, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductService } from '../../../shared/services/product.service';
 import { Product } from '../../../shared/components/counter/models/product.model';
@@ -9,7 +9,7 @@ import { Product } from '../../../shared/components/counter/models/product.model
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.css'
 })
-export class ProductDetailComponent {
+export class ProductDetailComponent implements OnInit {
   @Input({required: true}) id!: number;
   private productService = inject(ProductService);
   private CartService = inject(CartService);

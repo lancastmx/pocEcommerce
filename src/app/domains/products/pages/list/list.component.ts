@@ -1,5 +1,5 @@
 
-import { Component, inject, Input, signal } from '@angular/core';
+import { Component, inject, Input, signal, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 // components
 import { HeaderComponent } from '../../../shared/components/header/header.component';
@@ -24,7 +24,7 @@ import { CategoryService } from '../../../shared/services/category.service';
   templateUrl: './list.component.html',
   styleUrl: './list.component.css'
 })
-export class ListComponent {
+export class ListComponent implements OnInit {
   originalProducts = signal<Product[]>([]);
   products = signal<Product[]>([]);
   categories = signal<Category[]>([]);

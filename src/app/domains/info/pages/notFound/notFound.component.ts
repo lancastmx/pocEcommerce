@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLinkWithHref } from '@angular/router';
 import { HeaderComponent } from "../../../shared/components/header/header.component";
@@ -9,11 +9,8 @@ import { HeaderComponent } from "../../../shared/components/header/header.compon
   templateUrl: './notFound.component.html',
   styleUrls: ['./notFound.component.css']
 })
-export class NotFoundComponent implements OnInit {
+export class NotFoundComponent  {
 
-  constructor() { }
 
-  ngOnInit() {
-  }
 
 }

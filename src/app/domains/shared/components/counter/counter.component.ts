@@ -9,14 +9,14 @@ import { OnInit, OnChanges, AfterViewInit, OnDestroy } from '@angular/core';
   templateUrl: './counter.component.html',
   styleUrl: './counter.component.css'
 })
-export class CounterComponent {
-  @Input() duration: number = 0; // Tiempo que se mostrará el mensaje (en segundos o milisegundos, según el uso)
-  @Input() message: string = ''; // Mensaje a mostrar en pantalla
+export class CounterComponent implements OnChanges, OnInit, AfterViewInit, OnDestroy {
+  @Input() duration = 0; // Tiempo que se mostrará el mensaje (en segundos o milisegundos, según el uso)
+  @Input() message = ''; // Mensaje a mostrar en pantalla
 
   // Lista de eventos de ciclo de vida que se pueden renderizar en la plantilla
   lifecycleLog: string[] = [];
   counter = signal<number>(0);
-  conunterRef: number = 0;
+  conunterRef = 0;
 
 
   constructor(private cdr: ChangeDetectorRef) {
