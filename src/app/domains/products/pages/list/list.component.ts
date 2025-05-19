@@ -1,11 +1,8 @@
 
-import { Component, inject, Input, signal, OnInit } from '@angular/core';
+import { Component, inject, signal, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 // components
-import { HeaderComponent } from '../../../shared/components/header/header.component';
 import { ProductComponent } from '../../components/product/product.component';
-import { SierpinskiCanvasComponent } from '../../../shared/sierpinski-canvas/sierpinski-canvas.component';
-import { MandelbrotCanvasComponent } from '../../../shared/mandelbrotCanvas/mandelbrotCanvas.component';
 // models
 import { Product } from '../../../shared/components/counter/models/product.model';
 import { Category } from './../../../shared/components/counter/models/category.model';
@@ -32,9 +29,7 @@ export class ListComponent implements OnInit {
   private productService = inject(ProductService);
   private CategoryService = inject(CategoryService);
 
-  constructor() {
 
-  }
   ngOnInit() {
    this.getProdct();
    this.getCategory();

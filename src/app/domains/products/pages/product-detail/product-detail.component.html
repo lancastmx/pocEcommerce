@@ -11,6 +11,9 @@
       <div class="grid grid-cols-3 gap-1">
         @for (image of product()?.images; track image){
           <img
+          tabindex="0"
+          role="button"
+          (keydown.enter)="chagecover(image)"
           alt="ecommerce"
           class="object-cover object-center rounded border-2 border-gray-200"
           [class.border-sky-500]="image === cover()"

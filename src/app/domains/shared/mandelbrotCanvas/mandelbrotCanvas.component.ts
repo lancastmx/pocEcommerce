@@ -5,7 +5,7 @@ import {
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'mandelbrot-canvas',
+  selector: 'app-mandelbrot-canvas',
   standalone: true,
   imports: [CommonModule],
   template: `<canvas #canvas></canvas>`,
@@ -17,7 +17,7 @@ export class MandelbrotCanvasComponent implements AfterViewInit {
 
   @ViewChild('canvas', { static: true }) cvs!: ElementRef<HTMLCanvasElement>;
 
-  /** 🔧 Resolución iterativa */
+  /** 🔧 Resolución iterativa */
   @Input() maxIter = 80;
 
   // --- Estado del plano complejo (bounds) ---
@@ -45,13 +45,13 @@ export class MandelbrotCanvasComponent implements AfterViewInit {
     this.zoom(offsetX, offsetY, factor);
   }
 
-  /* 🖱️ Doble‑click = zoom in x2 */
+  /* 🖱️ Doble-click = zoom in x2 */
   @HostListener('dblclick', ['$event'])
   onDblClick(ev: MouseEvent) {
     this.zoom(ev.offsetX, ev.offsetY, 0.5);
   }
 
-  /* 🖱️ Mouse down / move / up = pan */
+  /* 🖱️ Mouse down / move / up = pan */
   @HostListener('mousedown', ['$event'])
   onDown(ev: MouseEvent) {
     this.isPanning = true;
@@ -140,7 +140,7 @@ export class MandelbrotCanvasComponent implements AfterViewInit {
     ctx.putImageData(img, 0, 0);
   }
 
-  /* 🎨 Convierte HSL a RGB rápido */
+  /* 🎨 Convierte HSL a RGB rápido */
   private hsl2rgb(h: number, s: number, l: number): [number,number,number] {
     s /= 100; l /= 100;
     const k = (n: number) => (n + h / 30) % 12;

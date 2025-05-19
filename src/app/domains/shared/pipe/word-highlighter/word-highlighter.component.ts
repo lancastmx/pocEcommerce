@@ -23,7 +23,8 @@ export class WordHighlighterComponent implements OnInit, OnChanges, OnDestroy {
   isPaused = false;
   activeWordIndex = -1; // -1 indica que no hay palabra activa inicialmente
   private totalWordCount = 0;
-  private intervalId: any = null;
+  private intervalId: ReturnType<typeof setInterval> | null = null;
+
 
   // --- Configuración ---
   intervalMs = 600; // Intervalo base en ms (600ms ≈ 100 WPM)
