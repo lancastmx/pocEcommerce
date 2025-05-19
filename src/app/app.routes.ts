@@ -11,20 +11,20 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        component: ListComponent
+        component: ListComponent,
       },
       {
         path: 'about',
-        component: AboutComponent
+        component: AboutComponent,
       },
       {
         path: 'product/:id',
-        component: ProductDetailComponent
-      }
-    ]
+        component: ProductDetailComponent,
+      },
+    ],
   },
   {
     path: '**',
-    component: NotFoundComponent
-  }
+    component: NotFoundComponent,
+  },
 ];

@@ -1,4 +1,13 @@
-import { Component, Input, OnInit, OnDestroy, OnChanges, SimpleChanges, Inject, PLATFORM_ID } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  OnDestroy,
+  OnChanges,
+  SimpleChanges,
+  Inject,
+  PLATFORM_ID,
+} from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { LecturaBionicaPipe } from '../lectura-bionica.pipe';
 // Interfaz simplificada, ya no necesitamos segmentIndex
@@ -12,7 +21,7 @@ interface WordSegment {
   standalone: true,
   imports: [CommonModule, LecturaBionicaPipe],
   templateUrl: './word-highlighter.component.html',
-  styleUrl: './word-highlighter.component.css'
+  styleUrl: './word-highlighter.component.css',
 })
 export class WordHighlighterComponent implements OnInit, OnChanges, OnDestroy {
   @Input() textToHighlight = ''; // Recibe el texto como Input
@@ -24,7 +33,6 @@ export class WordHighlighterComponent implements OnInit, OnChanges, OnDestroy {
   activeWordIndex = -1; // -1 indica que no hay palabra activa inicialmente
   private totalWordCount = 0;
   private intervalId: ReturnType<typeof setInterval> | null = null;
-
 
   // --- Configuración ---
   intervalMs = 600; // Intervalo base en ms (600ms ≈ 100 WPM)
@@ -56,7 +64,8 @@ export class WordHighlighterComponent implements OnInit, OnChanges, OnDestroy {
   // --- Métodos de Control ---
 
   start(): void {
-    if (this.totalWordCount === 0 || !isPlatformBrowser(this.platformId)) return;
+    if (this.totalWordCount === 0 || !isPlatformBrowser(this.platformId))
+      return;
     console.log('Start requested');
     this.stopTimer(); // Asegura que no haya timers previos
     this.isActive = true;
@@ -66,14 +75,16 @@ export class WordHighlighterComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   pause(): void {
-    if (!this.isActive || this.isPaused || !isPlatformBrowser(this.platformId)) return;
+    if (!this.isActive || this.isPaused || !isPlatformBrowser(this.platformId))
+      return;
     console.log('Pause requested');
     this.isPaused = true;
     this.stopTimer(); // Detener el avance
   }
 
   resume(): void {
-    if (!this.isActive || !this.isPaused || !isPlatformBrowser(this.platformId)) return;
+    if (!this.isActive || !this.isPaused || !isPlatformBrowser(this.platformId))
+      return;
     console.log('Resume requested');
     this.isPaused = false;
     // activeWordIndex ya tiene la posición donde se pausó
@@ -108,8 +119,13 @@ export class WordHighlighterComponent implements OnInit, OnChanges, OnDestroy {
 
     // Calcular y aplicar nuevo intervalo con límites
     const newInterval = this.intervalMs + deltaMs;
-    this.intervalMs = Math.max(this.minIntervalMs, Math.min(this.maxIntervalMs, newInterval));
-    console.log(`New interval: ${this.intervalMs} ms (~${this.currentWpm} WPM)`);
+    this.intervalMs = Math.max(
+      this.minIntervalMs,
+      Math.min(this.maxIntervalMs, newInterval),
+    );
+    console.log(
+      `New interval: ${this.intervalMs} ms (~${this.currentWpm} WPM)`,
+    );
 
     // Reiniciar si estaba corriendo
     if (wasRunning && isPlatformBrowser(this.platformId)) {
@@ -129,13 +145,23 @@ export class WordHighlighterComponent implements OnInit, OnChanges, OnDestroy {
 
   private startTimer(): void {
     // Validaciones extra
-    if (!this.isActive || this.isPaused || this.intervalId || this.totalWordCount === 0 || !isPlatformBrowser(this.platformId)) return;
+    if (
+      !this.isActive ||
+      this.isPaused ||
+      this.intervalId ||
+      this.totalWordCount === 0 ||
+      !isPlatformBrowser(this.platformId)
+    )
+      return;
 
     console.log(`Starting timer with interval: ${this.intervalMs} ms`);
     // Asegurar que el índice es válido al empezar/reanudar
-     if (this.activeWordIndex < 0 || this.activeWordIndex >= this.totalWordCount) {
-         this.activeWordIndex = 0;
-     }
+    if (
+      this.activeWordIndex < 0 ||
+      this.activeWordIndex >= this.totalWordCount
+    ) {
+      this.activeWordIndex = 0;
+    }
 
     this.intervalId = setInterval(() => {
       this.activeWordIndex = (this.activeWordIndex + 1) % this.totalWordCount;
@@ -165,11 +191,17 @@ export class WordHighlighterComponent implements OnInit, OnChanges, OnDestroy {
     let currentWordIndex = 0;
 
     while ((match = regex.exec(text)) !== null) {
-      if (match[1]) { // Es una palabra
+      if (match[1]) {
+        // Es una palabra
         // Guardamos la palabra completa como un solo segmento de palabra
-        segments.push({ text: match[1], isWord: true, wordIndex: currentWordIndex });
+        segments.push({
+          text: match[1],
+          isWord: true,
+          wordIndex: currentWordIndex,
+        });
         currentWordIndex++;
-      } else if (match[2]) { // No es palabra (espacios, puntuación)
+      } else if (match[2]) {
+        // No es palabra (espacios, puntuación)
         segments.push({ text: match[2], isWord: false });
       }
     }
@@ -181,11 +213,18 @@ export class WordHighlighterComponent implements OnInit, OnChanges, OnDestroy {
   // Calcula el peso para un segmento (palabra o no-palabra)
   getWordWeight(segment: WordSegment): number {
     // Si no está activo, pausado, o no es una palabra, peso normal
-    if (!this.isActive || this.isPaused || !segment.isWord || segment.wordIndex === undefined) {
+    if (
+      !this.isActive ||
+      this.isPaused ||
+      !segment.isWord ||
+      segment.wordIndex === undefined
+    ) {
       return this.defaultWeight;
     }
     // Si es la palabra activa, peso resaltado, sino normal
-    return segment.wordIndex === this.activeWordIndex ? this.highlightWeight : this.defaultWeight;
+    return segment.wordIndex === this.activeWordIndex
+      ? this.highlightWeight
+      : this.defaultWeight;
   }
 
   // Getter para WPM

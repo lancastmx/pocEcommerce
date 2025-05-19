@@ -12,19 +12,26 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule],
   template: `<canvas #canvas></canvas>`,
   // Apenas un borde para ver el lienzo
-  styles: [`
-    :host { display:block; }
-    canvas { width:100%; height:100%; border:1px solid #000; }
-  `]
+  styles: [
+    `
+      :host {
+        display: block;
+      }
+      canvas {
+        width: 100%;
+        height: 100%;
+        border: 1px solid #000;
+      }
+    `,
+  ],
 })
 export class SierpinskiCanvasComponent implements AfterViewInit {
-  @ViewChild('canvas', { static: true }) canvasEl!: ElementRef<HTMLCanvasElement>;
-
+  @ViewChild('canvas', { static: true })
+  canvasEl!: ElementRef<HTMLCanvasElement>;
 
   @Input() depth = 6;
 
   @Input() fill = '#000';
-
 
   private resizeObserver?: ResizeObserver;
 
@@ -34,7 +41,6 @@ export class SierpinskiCanvasComponent implements AfterViewInit {
     this.resizeObserver = new ResizeObserver(() => this.draw());
     this.resizeObserver.observe(this.canvasEl.nativeElement);
   }
-
 
   private draw() {
     const canvas = this.canvasEl.nativeElement;
@@ -49,9 +55,9 @@ export class SierpinskiCanvasComponent implements AfterViewInit {
     ctx.fillStyle = this.fill;
 
     // Triángulo equilátero inscrito en el canvas
-    const p1 = { x: w / 2,      y: 0 };
-    const p2 = { x: 0,          y: h };
-    const p3 = { x: w,          y: h };
+    const p1 = { x: w / 2, y: 0 };
+    const p2 = { x: 0, y: h };
+    const p3 = { x: w, y: h };
 
     this.drawTriangle(ctx, p1, p2, p3, this.depth);
   }
@@ -61,7 +67,7 @@ export class SierpinskiCanvasComponent implements AfterViewInit {
     a: { x: number; y: number },
     b: { x: number; y: number },
     c: { x: number; y: number },
-    n: number
+    n: number,
   ) {
     if (n === 0) {
       ctx.beginPath();
@@ -79,13 +85,12 @@ export class SierpinskiCanvasComponent implements AfterViewInit {
     const ca = this.midPoint(c, a);
 
     // Repetir recursión en los 3 sub‑triángulos (descartamos el central)
-    this.drawTriangle(ctx, a,   ab, ca, n - 1);
-    this.drawTriangle(ctx, ab,  b,  bc, n - 1);
-    this.drawTriangle(ctx, ca,  bc, c,  n - 1);
+    this.drawTriangle(ctx, a, ab, ca, n - 1);
+    this.drawTriangle(ctx, ab, b, bc, n - 1);
+    this.drawTriangle(ctx, ca, bc, c, n - 1);
   }
 
-
-  private midPoint(p: {x:number;y:number}, q:{x:number;y:number}) {
+  private midPoint(p: { x: number; y: number }, q: { x: number; y: number }) {
     return { x: (p.x + q.x) / 2, y: (p.y + q.y) / 2 };
   }
 }

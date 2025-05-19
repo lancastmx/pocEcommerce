@@ -1,4 +1,3 @@
-
 import { Component, inject, signal, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 // components
@@ -12,14 +11,12 @@ import { CartService } from './../../../shared/services/cart.service';
 import { ProductService } from '../../../shared/services/product.service';
 import { CategoryService } from '../../../shared/services/category.service';
 
-
-
 @Component({
   selector: 'app-list',
   standalone: true,
-  imports: [CommonModule, ProductComponent ],
+  imports: [CommonModule, ProductComponent],
   templateUrl: './list.component.html',
-  styleUrl: './list.component.css'
+  styleUrl: './list.component.css',
 })
 export class ListComponent implements OnInit {
   originalProducts = signal<Product[]>([]);
@@ -29,10 +26,9 @@ export class ListComponent implements OnInit {
   private productService = inject(ProductService);
   private CategoryService = inject(CategoryService);
 
-
   ngOnInit() {
-   this.getProdct();
-   this.getCategory();
+    this.getProdct();
+    this.getCategory();
   }
   addToCart(product: Product) {
     this.CartService.addToCart(product);
@@ -47,19 +43,17 @@ export class ListComponent implements OnInit {
     });
   }
 
-
- private getCategory(){
-    this.CategoryService.getAll()
-   .subscribe({
-    next: (categories) => {
-      this.categories.set(categories);
-    },
-   })
+  private getCategory() {
+    this.CategoryService.getAll().subscribe({
+      next: (categories) => {
+        this.categories.set(categories);
+      },
+    });
   }
 
   filterByCategory(categoryId: number) {
     const allProducts = this.originalProducts();
-    const filtered = allProducts.filter(p => p.category.id === categoryId);
+    const filtered = allProducts.filter((p) => p.category.id === categoryId);
     this.products.set(filtered);
   }
 

@@ -8,9 +8,8 @@ describe('WordHighlighterComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [WordHighlighterComponent]
-    })
-    .compileComponents();
+      imports: [WordHighlighterComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(WordHighlighterComponent);
     component = fixture.componentInstance;

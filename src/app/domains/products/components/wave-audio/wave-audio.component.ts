@@ -1,24 +1,29 @@
-import { Component, ElementRef, Input, ViewChild, signal, AfterViewInit } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Input,
+  ViewChild,
+  signal,
+  AfterViewInit,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import WaveSurfer from 'wavesurfer.js';
 @Component({
   selector: 'app-wave-audio',
-  imports: [
-    CommonModule,
-  ],
+  imports: [CommonModule],
   templateUrl: './wave-audio.component.html',
-  styleUrl: './wave-audio.component.css'
+  styleUrl: './wave-audio.component.css',
 })
 export class WaveAudioComponent implements AfterViewInit {
   @Input() audioUrl = '';
   @ViewChild('waveform', { static: true }) container!: ElementRef;
 
   private waveSurfer: WaveSurfer | undefined;
-  isPlaying =  signal<boolean>(false);
+  isPlaying = signal<boolean>(false);
 
   ngAfterViewInit() {
     if (typeof window !== 'undefined' && this.audioUrl) {
-      import('wavesurfer.js').then(WaveSurfer => {
+      import('wavesurfer.js').then((WaveSurfer) => {
         this.waveSurfer = WaveSurfer.default.create({
           container: this.container.nativeElement,
           waveColor: 'violet',
@@ -35,10 +40,8 @@ export class WaveAudioComponent implements AfterViewInit {
   playPause() {
     if (this.waveSurfer) {
       this.waveSurfer.playPause(); // Alterna play/pause
-      this.isPlaying.set(this.waveSurfer.isPlaying())
+      this.isPlaying.set(this.waveSurfer.isPlaying());
     }
     console.log('WaveSurfer instance created with URL:', this.audioUrl);
   }
-
 }
-

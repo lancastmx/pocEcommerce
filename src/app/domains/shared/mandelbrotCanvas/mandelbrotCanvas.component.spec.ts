@@ -1,4 +1,3 @@
-
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { MandelbrotCanvasComponent } from './mandelbrotCanvas.component';
 
@@ -8,9 +7,8 @@ describe('MandelbrotCanvasComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ MandelbrotCanvasComponent ]
-    })
-    .compileComponents();
+      declarations: [MandelbrotCanvasComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

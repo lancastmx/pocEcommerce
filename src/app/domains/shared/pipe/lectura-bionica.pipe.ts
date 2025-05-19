@@ -1,10 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'lecturaBionica'
+  name: 'lecturaBionica',
 })
 export class LecturaBionicaPipe implements PipeTransform {
-
   transform(value: string | null | undefined): string {
     if (!value) {
       return '';
@@ -15,7 +14,8 @@ export class LecturaBionicaPipe implements PipeTransform {
     let match;
 
     while ((match = regex.exec(value)) !== null) {
-      if (match[1]) { // Es una palabra
+      if (match[1]) {
+        // Es una palabra
         const word = match[1];
         const len = word.length;
         let wordHtml = '';
@@ -26,7 +26,7 @@ export class LecturaBionicaPipe implements PipeTransform {
         } else if (len <= 3) {
           // Palabra corta: dos pasos (grueso, normal)
           const part1 = word.substring(0, 1); // Primera letra
-          const part2 = word.substring(1);    // Resto
+          const part2 = word.substring(1); // Resto
           wordHtml = `<span class="fw-700">${part1}</span><span class="fw-400">${part2}</span>`;
         } else {
           // Palabra más larga: tres pasos (grueso, semigrueso, normal)
@@ -44,12 +44,11 @@ export class LecturaBionicaPipe implements PipeTransform {
           if (part3) wordHtml += `<span class="fw-400">${part3}</span>`;
         }
         resultHtml += wordHtml;
-
-      } else if (match[2]) { // No es una palabra (espacios, puntuación)
+      } else if (match[2]) {
+        // No es una palabra (espacios, puntuación)
         resultHtml += match[2]; // Añadir tal cual
       }
     }
     return resultHtml;
   }
-
 }

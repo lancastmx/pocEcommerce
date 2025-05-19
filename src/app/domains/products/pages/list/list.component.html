@@ -1,43 +1,38 @@
-
 <div class="flex space-x-4">
   <div>
-   <div class="flex space-x-4">
-  <div>
-    <ul>
-      <li>
-        <button
-          class="text-sm text-blue-500 cursor-pointer"
-          (click)="showAllProducts()"
-        >
-          Mostrar todos
-        </button>
-      </li>
-      @for (category of categories(); track category) {
-        <li class="text-gray-500 text-sm">
-          <button
-            class="cursor-pointer hover:text-red-500"
-            (click)="filterByCategory(category.id)"
-          >
-            {{ category.name }}
-          </button>
-        </li>
-      } @empty {
-        <h3>Sin categorías</h3>
-      }
-    </ul>
-  </div>
-
-</div>
-
+    <div class="flex space-x-4">
+      <div>
+        <ul>
+          <li>
+            <button
+              class="text-sm text-blue-500 cursor-pointer"
+              (click)="showAllProducts()"
+            >
+              Mostrar todos
+            </button>
+          </li>
+          @for (category of categories(); track category) {
+            <li class="text-gray-500 text-sm">
+              <button
+                class="cursor-pointer hover:text-red-500"
+                (click)="filterByCategory(category.id)"
+              >
+                {{ category.name }}
+              </button>
+            </li>
+          } @empty {
+            <h3>Sin categorías</h3>
+          }
+        </ul>
+      </div>
+    </div>
   </div>
   <div class="grid mt-5">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-      @for (product of products(); track product){
-        <app-product
-        [product]="product"
-        (addToCard)="addToCart($event)"/>
+      @for (product of products(); track product) {
+        <app-product [product]="product" (addToCard)="addToCart($event)" />
       } @empty {
-        <h3> Si productos</h3>
+        <h3>Si productos</h3>
       }
     </div>
   </div>
